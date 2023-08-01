@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme de vie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column align-items-center justify-content-center bg-dark" style="height: 100vh;">
+    <form onsubmit="submitForm(event)" action="index.html" method="GET" class="m-3 p-3 bg-white rounded shadow-lg" id="houses-form">
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Nom</label>
+            <input type="text" class="form-control shadow-sm" id="lastName" aria-describedby="lastName">
+        </div>
+        <div class="mb-3">
+            <label for="firstName" class="form-label">Prénom</label>
+            <input type="text" class="form-control shadow-sm" id="firstName" aria-describedby="firstName">
+        </div>
+        <div class="mb-3">
+            <label for="currentYear" class="form-label">Année courante</label>
+            <input type="text" class="form-control shadow-sm" id="currentYear" aria-describedby="currentYear" disabled>
+        </div>
+        <div class="row d-flex mb-3">
+            <div class="mb-1 col">
+                <label for="birthDateDay" class="form-label">Jour</label>
+                <input type="number" min="1" step="1" max="31" class="form-control shadow-sm" id="birthDateDay" aria-describedby="birthDateDay" required>
+            </div>
+            <div class="mb-1 col">
+                <label for="birthDateMonth" class="form-label">Mois</label>
+                <input type="number" min="1" step="1" max="12" class="form-control shadow-sm" id="birthDateMonth" aria-describedby="birthDateMonth" required>
+            </div>
+            <div class="mb-1 col">
+                <label for="birthDateYear" class="form-label">Année</label>
+                <input type="number" min="1900" step="1" max="2023" class="form-control shadow-sm" id="birthDateYear" aria-describedby="birthDateYear" required>
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-success shadow-sm" type="submit">Calculer</button>
+        </div>
+    </form>
+
+    <div class="px-5 py-3 bg-white rounded" id="houses-table" hidden>
+        <table class="table p-1">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Maison</th>
+                    <th scope="col">Valeur</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <th scope="row">1 - Je parais</th>
+                    <td id="house-1-value">Jacob</td>
+                </tr>
+                <tr>
+                    <th scope="row">2 - Je cherche</th>
+                    <td id="house-2-value">Jacob</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">3 - Je pense</th>
+                    <td id="house-3-value">Jacob</td>
+                </tr>
+                <tr>
+                    <th scope="row">4 - Je fais</th>
+                    <td id="house-4-value">Jacob</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">5 - J'expérimente</th>
+                    <td id="house-5-value">Jacob</td>
+                </tr>
+                <tr>
+                    <th scope="row">6 - Je puise dans</th>
+                    <td id="house-6-value">Jacob</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">7 - Je suis défié(e) par</th>
+                    <td id="house-7-value">Jacob</td>
+                </tr>
+                <tr>
+                    <th scope="row">8 - Mon année perso</th>
+                    <td id="house-8-value">Jacob</td>
+                </tr>
+                <tr>
+                    <th scope="row">9 - Je reussis</th>
+                    <td id="house-9-value">Jacob</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">10 - J'échoue</th>
+                    <td id="house-10-value">Jacob</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">11 - Je suis limité(e) de</th>
+                    <td id="house-11-value">Jacob</td>
+                </tr>
+                <tr>
+                    <th scope="row">12 - Je guéris par</th>
+                    <td id="house-12-value">Jacob</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">13 - Le coeur de blason, le paradoxe</th>
+                    <td id="house-13-value">Jacob</td>
+                </tr>
+                <thead>
+                    <tr class="table-warning">
+                        <th scope="col">Mythe perso</th>
+                        <th scope="col">Rêve de vie</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr>
+                        <td id="house-14-value">Jacob</td>
+                        <td id="house-15-value">Jacob</td>
+                    </tr>
+                </tbody>
+            </tbody>
+        </table>
+    </div>
+           
+    <a href="index.html" id="back-link" hidden><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+      </svg> Retour au formulaire</a>
+
+    <script>
+        const lastNameInput = document.getElementById('lastName');
+        const firstNameInput = document.getElementById('firstName');
+        const currentYearInput = document.getElementById('currentYear');
+        const birthDateDayInput = document.getElementById('birthDateDay');
+        const birthDateMonthInput = document.getElementById('birthDateMonth');
+        const birthDateYearInput = document.getElementById('birthDateYear');
+        const houseToArcane = [
+            "1 - le bateleur",
+            "2 - la papesse", 
+            "3 - l'impératrice", 
+            "4 - l'empereur", 
+            "5 - le pape", 
+            "6 - l'amoureux", 
+            "7 - le chariot", 
+            "8 - la justice", 
+            "9 - l'hermite", 
+            "10 - la roue de la fortune", 
+            "11 - la force", 
+            "12 - le pendu", 
+            "13 - l'arcane sans nom", 
+            "14 - la temperance", 
+            "15 - le diable", 
+            "16 - la maison dieu", 
+            "17 - l'étoile", 
+            "18 - la lune", 
+            "19 - le soleil", 
+            "20 - le jugement", 
+            "21 - le monde", 
+            "22 - le mat", 
+        ];  
+        const houseToMyth = [
+            "1 - Jason",
+            "2 - Gaïa", 
+            "3 - Electre", 
+            "4 - Dédale", 
+            "5 - Zeus",
+            "6 - OEdipe", 
+            "7 - Thésée", 
+            "8 - Thémis", 
+            "9 - Tirésias", 
+            "10 - Sisyphe", 
+            "11 - Hércule", 
+            "12 - Enée", 
+            "13 - Déméter", 
+            "14 - Ganymède", 
+            "15 - Icare", 
+            "16 - Persée", 
+            "17 - Deucalion", 
+            "18 - Cassandre", 
+            "19 - Castor et Pollux", 
+            "20 - Prométhée", 
+            "21 - Ulysse", 
+            "22 - Dionysos", 
+        ]
+        const houseToDream = [
+            "1 - ?",
+            "2 - ?", 
+            "3 - du messager de l'invisible", 
+            "4 - de réalisation materielle", 
+            "5 - d'akkuabce",
+            "6 - d'amour", 
+            "7 - de réussite sociale", 
+            "8 - de justice", 
+            "9 - de connaissance", 
+            "10 - d'évolution", 
+            "11 - de puissance", 
+            "12 - d'évasion", 
+            "13 - de transformation", 
+            "14 - de sagesse", 
+            "15 - de pouvoir", 
+            "16 - de bâtisseur", 
+            "17 - d'amour universel", 
+            "18 - de créativité", 
+            "19 - de fraternité", 
+            "20 - d'élévation", 
+            "21 - d'expansion (*liberté, aventure)", 
+            "22 - de liberté et de voyage", 
+        ]
+
+
+        function submitForm(event) {
+            event.preventDefault();
+            parseQueryParameters()
+        }
+
+        function moreThan22Reduce(number) {
+            let returnNumber = number;
+            while (returnNumber > 22) {
+                let array1 = String(returnNumber).split("").map((num) => {
+                    return Number(num)
+                });
+                returnNumber = array1.reduce((accumulator, currentValue) => accumulator + currentValue);
+            };
+            if (0 == returnNumber) return 22;
+            return returnNumber;
+        }
+
+        function moreThan9Reduce(number) {
+            let returnNumber = number;
+            if (returnNumber == 11 || returnNumber == 22) {
+                return returnNumber
+            }
+            while (returnNumber > 9) {
+                let array1 = String(returnNumber).split("").map((num) => {
+                    return Number(num)
+                });
+                returnNumber = array1.reduce((accumulator, currentValue) => accumulator + currentValue);
+            };
+            return returnNumber;
+        }
+
+        document.getElementById('currentYear').value = new Date().getFullYear();
+
+        function parseQueryParameters() {
+
+            let houseValues = getHouseValues()
+
+            document.getElementById("house-1-value").innerHTML = houseToArcane[houseValues[0]-1];
+            document.getElementById("house-2-value").innerHTML = houseToArcane[houseValues[1]-1];
+            document.getElementById("house-3-value").innerHTML = houseToArcane[houseValues[2]-1];
+            document.getElementById("house-4-value").innerHTML = houseToArcane[houseValues[3]-1];
+            document.getElementById("house-5-value").innerHTML = houseToArcane[houseValues[4]-1];
+            document.getElementById("house-6-value").innerHTML = houseToArcane[houseValues[5]-1];
+            document.getElementById("house-7-value").innerHTML = houseToArcane[houseValues[6]-1];
+            document.getElementById("house-8-value").innerHTML = houseToArcane[houseValues[7]-1];
+            document.getElementById("house-9-value").innerHTML = houseToArcane[houseValues[8]-1];
+            document.getElementById("house-10-value").innerHTML = houseToArcane[houseValues[9]-1];
+            document.getElementById("house-11-value").innerHTML = houseToArcane[houseValues[10]-1];
+            document.getElementById("house-12-value").innerHTML = houseToArcane[houseValues[11]-1];
+            document.getElementById("house-13-value").innerHTML = houseToArcane[houseValues[12]-1];
+            document.getElementById("house-14-value").innerHTML = houseToMyth[houseValues[13]-1];
+            document.getElementById("house-15-value").innerHTML = houseToDream[houseValues[14]-1];
+
+
+
+            if (houseValues.length == 15) {
+                document.getElementById("houses-form").hidden = true;
+                document.getElementById("houses-table").hidden = false;
+                document.getElementById("back-link").hidden = false;
+            }
+        }
+
+        function getHouseValues() {
+            if (birthDateDayInput.length === 0 || birthDateMonthInput.length === 0 || birthDateYearInput.length === 0 || currentYearInput.length === 0) {
+                return []
+            }
+            let birthDateDay = parseInt(birthDateDayInput.value)
+            let birthDateMonth = parseInt(birthDateMonthInput.value)
+            let birthDateYear = parseInt(birthDateYearInput.value)
+            let h1 = moreThan22Reduce(birthDateDay)
+            let h2 = moreThan22Reduce(birthDateMonth)
+            let h3 = moreThan22Reduce(birthDateYear)
+            let h4 = moreThan22Reduce(birthDateDay + birthDateMonth + birthDateYear)
+            let h5 = moreThan22Reduce(h1 + h2 + h3 + h4)
+            let h6 = moreThan22Reduce(h1 + h2)
+            console.log(h3, h2, (h3 - h2), moreThan22Reduce(1969))
+            let h7 = moreThan22Reduce((h3 - h2) < 0 ? Math.abs(h3 - h2) : (h3 - h2))
+            let h8 = moreThan22Reduce(h6 + moreThan9Reduce(currentYearInput.value))
+            let h9 = moreThan22Reduce(h6 + h7)
+            let h10 = moreThan22Reduce((h9 - 22) < 0 ? Math.abs(h9 - 22) : (h9 - 22))
+            let h11 = moreThan22Reduce(h3 + h7 + h10)
+            let h12 = moreThan22Reduce(h2 + h4 + h6)
+            let jacobsLadder = (h12 + h1 + h5 + h3 + h11)
+            let belt = (h9 + h2 + h5 + h4)
+            let h13 = moreThan22Reduce(parseInt(jacobsLadder) + parseInt(belt))
+            let h14 = moreThan22Reduce(h4 + h6 + h7)
+            let h15 = moreThan22Reduce(h4 + h3 + h2)
+
+            return [
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                h7,
+                h8,
+                h9,
+                h10,
+                h11,
+                h12,
+                h13, 
+                h14, 
+                h15
+            ].map(x => parseInt(x))
+        }
+    </script>
+</body>
+
+</html>
